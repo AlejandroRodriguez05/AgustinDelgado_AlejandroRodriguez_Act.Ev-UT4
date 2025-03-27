@@ -13,25 +13,15 @@ public class habitacion {
     //atributos
     private int numerohabitacion;
     private int precionoche;
-    private tipo tipo;
-    private estado estado;
+    private TipoDeHabitacion tipo;
+    private EstadoDeHabitacion estado;
 
-//enum tipo
-    private enum tipo {
-        individual, doble, suite;
-    }
-//enum estado
-
-    private enum estado {
-        disponible, reservado, ocupada;
-    }
 
 //constructor
-    public habitacion(int numerohabitacion, int precionoche, tipo tipo, estado estado) {
+    public habitacion(int numerohabitacion, int precionoche, TipoDeHabitacion tipo) {
         this.numerohabitacion = numerohabitacion;
         this.precionoche = precionoche;
-        this.tipo = tipo;
-        this.estado = estado;
+        this.estado = EstadoDeHabitacion.disponible;
     }
 
     public int getNumerohabitacion() {
@@ -42,11 +32,11 @@ public class habitacion {
         return precionoche;
     }
 
-    public tipo getTipo() {
+    public TipoDeHabitacion getTipo() {
         return tipo;
     }
 
-    public estado getEstado() {
+    public EstadoDeHabitacion getEstado() {
         return estado;
     }
 
@@ -58,11 +48,11 @@ public class habitacion {
         this.precionoche = precionoche;
     }
 
-    public void setTipo(tipo tipo) {
+    public void setTipo(TipoDeHabitacion tipo) {
         this.tipo = tipo;
     }
 
-    public void setEstado(estado estado) {
+    public void setEstado(EstadoDeHabitacion estado) {
         this.estado = estado;
     }
 
