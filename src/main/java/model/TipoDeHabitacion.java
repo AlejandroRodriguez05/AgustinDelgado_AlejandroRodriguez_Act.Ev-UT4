@@ -9,5 +9,5 @@ package model;
  * @author AlumnadoTarde
  */
 public enum TipoDeHabitacion {
-    individual, doble, suite;
+    INDIVIDUAL, DOBLE, SUITE;
 }
