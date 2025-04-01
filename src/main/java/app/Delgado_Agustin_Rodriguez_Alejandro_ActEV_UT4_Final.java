@@ -68,6 +68,9 @@ public class Delgado_Agustin_Rodriguez_Alejandro_ActEV_UT4_Final {
         GestorHotel.buscarHabitacionPorNumero(101);
         GestorHotel.buscarHabitacionesPorTipo(TipoDeHabitacion.SUITE);
         GestorHotel.BuscarEstadoHabitacion(EstadoDeHabitacion.DISPONIBLE);
+        
+        //buscar reservas activas de un cliente
+        GestorHotel.buscarReservasActivasPorCliente("Alejandro Rodriguez Sanchez");
     }
 
 }

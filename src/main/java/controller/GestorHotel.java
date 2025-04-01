@@ -22,6 +22,26 @@ public class GestorHotel {
     private static List<reserva> listaReservas = new ArrayList<>();
     private static List<habitacion> listaHabitaciones = new ArrayList<>();
 
+    public static void buscarReservasActivasPorCliente(String NombreCliente) {
+        System.out.println("\n Reservas activas de: " + NombreCliente);
+        boolean encontrado = false;
+
+        for (reserva r : listaReservas) {
+            if (r.getClientereserva().equalsIgnoreCase(NombreCliente) && r.getCheckout().isAfter(LocalDate.now())) {
+                System.out.println("Habitacion: " + r.getHabitacionreservada() + " | Check-in: " + r.getCheckin() + " | Check-out: " + r.getCheckout());
+                encontrado = true;
+            }
+        }
+    }
+    public static void ListarHistorialReservaCliente(String NombreCliente){
+     System.out.println("\n Reservas totales de: " + NombreCliente);
+     for (reserva r : listaReservas){
+     if(r.getClientereserva().equalsIgnoreCase(NombreCliente)){
+      System.out.println("Id Reserva: "+r.getIdreserva()+" | Habitacion: " + r.getHabitacionreservada() + " | Check-in: " + r.getCheckin() + " | Check-out: " + r.getCheckout());
+     }
+     }
+    }
+
     // Método para agregar una nueva habitación a la lista
     public static void agregarHabitacion(habitacion nuevaHabitacion) {
         // Verificamos si la habitación ya existe en la lista
@@ -37,7 +57,7 @@ public class GestorHotel {
     public static habitacion buscarHabitacionPorNumero(int numero) {
         for (habitacion h : listaHabitaciones) {
             if (h.getNumerohabitacion() == numero) {
-                System.out.println("NumeroHabitacion: "+h.getNumerohabitacion()+ ": Precio: " + h.getPrecionoche()+ ": tipo: " +h.getTipo()+ ": Estado: " +h.getEstado());
+                System.out.println("NumeroHabitacion: " + h.getNumerohabitacion() + ": Precio: " + h.getPrecionoche() + ": tipo: " + h.getTipo() + ": Estado: " + h.getEstado());
                 return h;
             }
         }
@@ -46,10 +66,10 @@ public class GestorHotel {
 
     // Método para buscar habitaciones por tipo
     public static habitacion buscarHabitacionesPorTipo(TipoDeHabitacion tipo) {
-        
+
         for (habitacion h : listaHabitaciones) {
             if (h.getTipo() == tipo) {
-                System.out.println("NumeroHabitacion: "+h.getNumerohabitacion()+ ": Precio: " + h.getPrecionoche()+ ": tipo: " +h.getTipo()+ ": Estado: " +h.getEstado());
+                System.out.println("NumeroHabitacion: " + h.getNumerohabitacion() + ": Precio: " + h.getPrecionoche() + ": tipo: " + h.getTipo() + ": Estado: " + h.getEstado());
             }
         }
         return null;
@@ -57,8 +77,8 @@ public class GestorHotel {
 
     public static habitacion BuscarEstadoHabitacion(EstadoDeHabitacion estado) {
         for (habitacion h : listaHabitaciones) {
-            if (h.getEstado()==estado) {
-                System.out.println("NumeroHabitacion: "+h.getNumerohabitacion()+ ": Precio: " + h.getPrecionoche()+ ": tipo: " +h.getTipo()+ ": Estado: " +h.getEstado());
+            if (h.getEstado() == estado) {
+                System.out.println("NumeroHabitacion: " + h.getNumerohabitacion() + ": Precio: " + h.getPrecionoche() + ": tipo: " + h.getTipo() + ": Estado: " + h.getEstado());
             }
         }
         return null;
