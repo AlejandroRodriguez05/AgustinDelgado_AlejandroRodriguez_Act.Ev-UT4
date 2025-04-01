@@ -5,13 +5,15 @@
 package controller;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import model.cliente;
 import model.reserva;
+import model.habitacion;
+import model.EstadoDeHabitacion;
 import java.util.List;
+import java.util.ArrayList;
 import model.habitacion;
 import model.TipoDeHabitacion;
 import model.EstadoDeHabitacion;
+
 
 /**
  *
@@ -20,6 +22,7 @@ import model.EstadoDeHabitacion;
 public class GestorHotel {
 
     private static List<reserva> listaReservas = new ArrayList<>();
+
     private static List<habitacion> listaHabitaciones = new ArrayList<>();
 
     public static void buscarReservasActivasPorCliente(String NombreCliente) {
@@ -90,6 +93,14 @@ public class GestorHotel {
             System.out.println("\nError: Un cliente solo puede tener un maximo de 3 reservas activas al mismo tiempo.\n");
         } else {
             listaReservas.add(nuevaReserva);
+
+            // Cambiar el estado de la habitación seleccionada a RESERVADA
+            for (habitacion h : listaHabitaciones) {
+                if (h.getNumerohabitacion() == nuevaReserva.getHabitacionreservada()) {
+                    h.setEstado_Reservada(EstadoDeHabitacion.RESERVADA);
+                    break; //Salimos del bucle cuando se encuentre la habitacion.
+                }
+            }
             System.out.println("Reserva guardada con exito.");
         }
     }
@@ -108,6 +119,40 @@ public class GestorHotel {
 
         // Si el cliente ya tiene 3 reservas activas, no puede hacer una nueva reserva
         return reservasActivas >= 3;
+    }
+
+
+    public static void CancelarReserva(String cliente, int NumHabitacion) {
+        boolean reservaCancelada = false;
+
+        // Recorremos la lista de reservas
+        for (reserva r : listaReservas) {
+            // Verificamos si la reserva es del cliente y si la fecha de checkin no ha llegado a hoy
+            if (r.getClientereserva().equals(cliente) & r.getHabitacionreservada()== NumHabitacion) {
+                if (r.getCheckin().isAfter(LocalDate.now())) {
+                    listaReservas.remove(r);
+                    reservaCancelada = true;
+
+                    // Cambiar el estado de la habitación a DISPONIBLE después de cancelar la reserva
+                    for (habitacion h : listaHabitaciones) {
+                        if (h.getNumerohabitacion() == r.getHabitacionreservada()) {
+                            h.setEstado_Disponible(EstadoDeHabitacion.DISPONIBLE);
+                            break;
+                        }
+                    }
+
+                    System.out.println("Reserva cancelada con exito.");
+                    break;
+                } else {
+                    System.out.println("Error: Ya ha comenzado el Checkin, no se puede cancelar la reserva.");
+                    break;
+                }
+            }
+        }
+
+        if (reservaCancelada == false) {
+            System.out.println("Error: No se ha encontrado la reserva que desea cancelar.");
+        }
     }
 
     public static void MostrarReserva() {
