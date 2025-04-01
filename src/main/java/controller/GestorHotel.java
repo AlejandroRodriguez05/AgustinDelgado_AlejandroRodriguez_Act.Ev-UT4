@@ -10,6 +10,10 @@ import model.habitacion;
 import model.EstadoDeHabitacion;
 import java.util.List;
 import java.util.ArrayList;
+import model.habitacion;
+import model.TipoDeHabitacion;
+import model.EstadoDeHabitacion;
+
 
 /**
  *
@@ -19,6 +23,50 @@ public class GestorHotel {
 
     private static List<reserva> listaReservas = new ArrayList<>();
 
+    private static List<habitacion> listaHabitaciones = new ArrayList<>();
+
+    // Método para agregar una nueva habitación a la lista
+    public static void agregarHabitacion(habitacion nuevaHabitacion) {
+        // Verificamos si la habitación ya existe en la lista
+        for (habitacion h : listaHabitaciones) {
+            if (h.getNumerohabitacion() == nuevaHabitacion.getNumerohabitacion()) {
+                return;
+            }
+        }
+        listaHabitaciones.add(nuevaHabitacion);
+    }
+
+    // Método para buscar una habitación por número
+    public static habitacion buscarHabitacionPorNumero(int numero) {
+        for (habitacion h : listaHabitaciones) {
+            if (h.getNumerohabitacion() == numero) {
+                System.out.println("NumeroHabitacion: "+h.getNumerohabitacion()+ ": Precio: " + h.getPrecionoche()+ ": tipo: " +h.getTipo()+ ": Estado: " +h.getEstado());
+                return h;
+            }
+        }
+        return null;
+    }
+
+    // Método para buscar habitaciones por tipo
+    public static habitacion buscarHabitacionesPorTipo(TipoDeHabitacion tipo) {
+        
+        for (habitacion h : listaHabitaciones) {
+            if (h.getTipo() == tipo) {
+                System.out.println("NumeroHabitacion: "+h.getNumerohabitacion()+ ": Precio: " + h.getPrecionoche()+ ": tipo: " +h.getTipo()+ ": Estado: " +h.getEstado());
+            }
+        }
+        return null;
+    }
+
+    public static habitacion BuscarEstadoHabitacion(EstadoDeHabitacion estado) {
+        for (habitacion h : listaHabitaciones) {
+            if (h.getEstado()==estado) {
+                System.out.println("NumeroHabitacion: "+h.getNumerohabitacion()+ ": Precio: " + h.getPrecionoche()+ ": tipo: " +h.getTipo()+ ": Estado: " +h.getEstado());
+            }
+        }
+        return null;
+    }
+
     // Método para agregar una reserva a la lista
     public static void guardarReserva(reserva nuevaReserva) {
         if (verificarReservas(nuevaReserva.getClientereserva())) {
@@ -27,7 +75,7 @@ public class GestorHotel {
             listaReservas.add(nuevaReserva);
 
             // Cambiar el estado de la habitación seleccionada a RESERVADA
-            for (habitacion h : habitacion.listaHabitaciones) {
+            for (habitacion h : listaHabitaciones) {
                 if (h.getNumerohabitacion() == nuevaReserva.getHabitacionreservada()) {
                     h.setEstado_Reservada(EstadoDeHabitacion.RESERVADA);
                     break; //Salimos del bucle cuando se encuentre la habitacion.
@@ -53,6 +101,7 @@ public class GestorHotel {
         return reservasActivas >= 3;
     }
 
+
     public static void CancelarReserva(String cliente, int NumHabitacion) {
         boolean reservaCancelada = false;
 
@@ -65,14 +114,14 @@ public class GestorHotel {
                     reservaCancelada = true;
 
                     // Cambiar el estado de la habitación a DISPONIBLE después de cancelar la reserva
-                    for (habitacion h : habitacion.listaHabitaciones) {
+                    for (habitacion h : listaHabitaciones) {
                         if (h.getNumerohabitacion() == r.getHabitacionreservada()) {
                             h.setEstado_Disponible(EstadoDeHabitacion.DISPONIBLE);
                             break;
                         }
                     }
 
-                    System.out.println("Reserva cancelada con éxito.");
+                    System.out.println("Reserva cancelada con exito.");
                     break;
                 } else {
                     System.out.println("Error: Ya ha comenzado el Checkin, no se puede cancelar la reserva.");
