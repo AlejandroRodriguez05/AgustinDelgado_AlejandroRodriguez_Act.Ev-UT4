@@ -52,8 +52,14 @@ public class habitacion {
         this.tipo = tipo;
     }
 
-    public void setEstado(EstadoDeHabitacion estado) {
-        this.estado = estado;
+    public void setEstado_Disponible(EstadoDeHabitacion estado) {
+        this.estado = EstadoDeHabitacion.DISPONIBLE;
+    }
+     public void setEstado_Ocupada(EstadoDeHabitacion estado) {
+        this.estado = EstadoDeHabitacion.OCUPADA;
+    }
+      public void setEstado_Reservada(EstadoDeHabitacion estado) {
+        this.estado = EstadoDeHabitacion.RESERVADA;
     }
 
 }

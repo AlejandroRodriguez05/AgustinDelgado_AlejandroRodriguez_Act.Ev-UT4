@@ -33,12 +33,12 @@ public class Delgado_Agustin_Rodriguez_Alejandro_ActEV_UT4_Final {
         cliente cliente2 = new cliente("Alejandro Rodriguez Sanchez");
         cliente cliente3 = new cliente("Pepe Vera Sosa");
 
-        reserva reserva1 = new reserva(101, "Agustin Delgado Estevez", LocalDate.now(), LocalDate.now().plusDays(90));
-        reserva reserva2 = new reserva(201, "Alejandro Rodriguez Sanchez", LocalDate.now(), LocalDate.now().plusDays(90));
-        reserva reserva3 = new reserva(202, "Alejandro Rodriguez Sanchez", LocalDate.now(), LocalDate.now().plusDays(90));
-        reserva reserva4 = new reserva(203, "Alejandro Rodriguez Sanchez", LocalDate.now(), LocalDate.now().plusDays(90));
-        reserva reserva5 = new reserva(301, "Pepe Vera Sosa", LocalDate.now(), LocalDate.now().plusDays(90));
-        reserva reserva6 = new reserva(303, "Alejandro Rodriguez Sanchez", LocalDate.now(), LocalDate.now().plusDays(90));
+        reserva reserva1 = new reserva(101, "Agustin Delgado Estevez", LocalDate.now().plusDays(10), LocalDate.now().plusDays(90));
+        reserva reserva2 = new reserva(201, "Alejandro Rodriguez Sanchez", LocalDate.now().plusDays(10), LocalDate.now().plusDays(90));
+        reserva reserva3 = new reserva(202, "Alejandro Rodriguez Sanchez", LocalDate.now().plusDays(10), LocalDate.now().plusDays(90));
+        reserva reserva4 = new reserva(203, "Alejandro Rodriguez Sanchez", LocalDate.now().plusDays(10), LocalDate.now().plusDays(90));
+        reserva reserva5 = new reserva(301, "Pepe Vera Sosa", LocalDate.now().plusDays(10), LocalDate.now().plusDays(90));
+        reserva reserva6 = new reserva(303, "Alejandro Rodriguez Sanchez", LocalDate.now().plusDays(10), LocalDate.now().plusDays(90));
         
         //METODOS
         //Guardar una reserva en el historial
@@ -52,6 +52,8 @@ public class Delgado_Agustin_Rodriguez_Alejandro_ActEV_UT4_Final {
         GestorHotel.guardarReserva(reserva6);
         
         GestorHotel.MostrarReserva();
+        
+        GestorHotel.CancelarReserva("Pepe Vera Sosa", 301);
     }
 
 }
