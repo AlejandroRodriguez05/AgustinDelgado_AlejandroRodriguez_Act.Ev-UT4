@@ -9,15 +9,62 @@ import java.util.ArrayList;
 import model.cliente;
 import model.reserva;
 import java.util.List;
+import model.habitacion;
+import model.TipoDeHabitacion;
+import model.EstadoDeHabitacion;
+
 /**
  *
  * @author AlumnadoTarde
  */
 public class GestorHotel {
-    
-        private static List<reserva> listaReservas = new ArrayList<>();
-    
-        // Método para agregar una reserva a la lista
+
+    private static List<reserva> listaReservas = new ArrayList<>();
+    private static List<habitacion> listaHabitaciones = new ArrayList<>();
+
+    // Método para agregar una nueva habitación a la lista
+    public static void agregarHabitacion(habitacion nuevaHabitacion) {
+        // Verificamos si la habitación ya existe en la lista
+        for (habitacion h : listaHabitaciones) {
+            if (h.getNumerohabitacion() == nuevaHabitacion.getNumerohabitacion()) {
+                return;
+            }
+        }
+        listaHabitaciones.add(nuevaHabitacion);
+    }
+
+    // Método para buscar una habitación por número
+    public static habitacion buscarHabitacionPorNumero(int numero) {
+        for (habitacion h : listaHabitaciones) {
+            if (h.getNumerohabitacion() == numero) {
+                System.out.println("NumeroHabitacion: "+h.getNumerohabitacion()+ ": Precio: " + h.getPrecionoche()+ ": tipo: " +h.getTipo()+ ": Estado: " +h.getEstado());
+                return h;
+            }
+        }
+        return null;
+    }
+
+    // Método para buscar habitaciones por tipo
+    public static habitacion buscarHabitacionesPorTipo(TipoDeHabitacion tipo) {
+        
+        for (habitacion h : listaHabitaciones) {
+            if (h.getTipo() == tipo) {
+                System.out.println("NumeroHabitacion: "+h.getNumerohabitacion()+ ": Precio: " + h.getPrecionoche()+ ": tipo: " +h.getTipo()+ ": Estado: " +h.getEstado());
+            }
+        }
+        return null;
+    }
+
+    public static habitacion BuscarEstadoHabitacion(EstadoDeHabitacion estado) {
+        for (habitacion h : listaHabitaciones) {
+            if (h.getEstado()==estado) {
+                System.out.println("NumeroHabitacion: "+h.getNumerohabitacion()+ ": Precio: " + h.getPrecionoche()+ ": tipo: " +h.getTipo()+ ": Estado: " +h.getEstado());
+            }
+        }
+        return null;
+    }
+
+    // Método para agregar una reserva a la lista
     public static void guardarReserva(reserva nuevaReserva) {
         if (verificarReservas(nuevaReserva.getClientereserva())) {
             System.out.println("\nError: Un cliente solo puede tener un maximo de 3 reservas activas al mismo tiempo.\n");
@@ -42,11 +89,11 @@ public class GestorHotel {
         // Si el cliente ya tiene 3 reservas activas, no puede hacer una nueva reserva
         return reservasActivas >= 3;
     }
-    
+
     public static void MostrarReserva() {
-         for (reserva r : listaReservas) {
+        for (reserva r : listaReservas) {
             System.out.println(r.getClientereserva() + ": " + r.getHabitacionreservada());
-         }
+        }
     }
-    
+
 }

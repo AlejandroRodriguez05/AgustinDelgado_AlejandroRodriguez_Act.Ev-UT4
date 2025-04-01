@@ -22,6 +22,7 @@ public class habitacion {
         this.numerohabitacion = numerohabitacion;
         this.precionoche = precionoche;
         this.estado = EstadoDeHabitacion.DISPONIBLE;
+        this.tipo = tipo;
     }
 
     public int getNumerohabitacion() {
