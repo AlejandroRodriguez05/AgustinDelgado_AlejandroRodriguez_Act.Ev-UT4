@@ -8,6 +8,8 @@ import model.TipoDeHabitacion;
 import model.habitacion;
 import model.cliente;
 import model.reserva;
+import controller.GestorHotel;
+
 /**
  *
  * @author AlumnadoTarde
@@ -27,15 +29,29 @@ public class Delgado_Agustin_Rodriguez_Alejandro_ActEV_UT4_Final {
         habitacion habitacion8 = new habitacion(302, 150, TipoDeHabitacion.SUITE);
         habitacion habitacion9 = new habitacion(303, 150, TipoDeHabitacion.SUITE);
 
-        cliente cliente1 = new cliente("Agustin Delgado Estevez", 1);
-        cliente cliente2 = new cliente("Alejandro Rodriguez Sanchez", 3);
-        cliente cliente3 = new cliente("Pepe Vera Sosa", 1);
+        cliente cliente1 = new cliente("Agustin Delgado Estevez");
+        cliente cliente2 = new cliente("Alejandro Rodriguez Sanchez");
+        cliente cliente3 = new cliente("Pepe Vera Sosa");
 
         reserva reserva1 = new reserva(101, "Agustin Delgado Estevez", LocalDate.now(), LocalDate.now().plusDays(90));
         reserva reserva2 = new reserva(201, "Alejandro Rodriguez Sanchez", LocalDate.now(), LocalDate.now().plusDays(90));
         reserva reserva3 = new reserva(202, "Alejandro Rodriguez Sanchez", LocalDate.now(), LocalDate.now().plusDays(90));
         reserva reserva4 = new reserva(203, "Alejandro Rodriguez Sanchez", LocalDate.now(), LocalDate.now().plusDays(90));
         reserva reserva5 = new reserva(301, "Pepe Vera Sosa", LocalDate.now(), LocalDate.now().plusDays(90));
+        reserva reserva6 = new reserva(303, "Alejandro Rodriguez Sanchez", LocalDate.now(), LocalDate.now().plusDays(90));
+        
+        //METODOS
+        //Guardar una reserva en el historial
+        GestorHotel.guardarReserva(reserva1);
+        GestorHotel.guardarReserva(reserva2);
+        GestorHotel.guardarReserva(reserva3);
+        GestorHotel.guardarReserva(reserva4);
+        GestorHotel.guardarReserva(reserva5);
+        
+        //Verificamos la validacion de NO tener mas de 3 reservas un mismo cliente
+        GestorHotel.guardarReserva(reserva6);
+        
+        GestorHotel.MostrarReserva();
     }
 
 }

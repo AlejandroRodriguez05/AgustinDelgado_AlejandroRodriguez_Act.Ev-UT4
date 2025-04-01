@@ -5,6 +5,7 @@
 package controller;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import model.cliente;
 import model.reserva;
 import java.util.List;
@@ -13,29 +14,39 @@ import java.util.List;
  * @author AlumnadoTarde
  */
 public class GestorHotel {
-
-    // Método para hacer una nueva reserva (ejemplo de uso)
-    public String hacerReserva(cliente cliente, List<reserva> reservas, int Num_Habitacion, LocalDate checkin, LocalDate checkout) {
-        if (verificarReservasActivas(cliente, reservas)==true) {
-            reservas.add(new reserva(Num_Habitacion, cliente.getNombreCompleto(), checkin, checkout));
-            
-            return "Reserva realizada con éxito.";
+    
+        private static List<reserva> listaReservas = new ArrayList<>();
+    
+        // Método para agregar una reserva a la lista
+    public static void guardarReserva(reserva nuevaReserva) {
+        if (verificarReservas(nuevaReserva.getClientereserva())) {
+            System.out.println("\nError: Un cliente solo puede tener un maximo de 3 reservas activas al mismo tiempo.\n");
         } else {
-            return "No puedes tener más de 3 reservas activas al mismo tiempo.";
+            listaReservas.add(nuevaReserva);
+            System.out.println("Reserva guardada con exito.");
         }
     }
-    
-        // Método que verifica si un cliente tiene más de 3 reservas activas
-    public boolean verificarReservasActivas(cliente cliente, List<reserva> reservas) {
+
+    // Método para verificar si un cliente tiene 3 reservas activas
+    private static boolean verificarReservas(String cliente) {
         int reservasActivas = 0;
 
-        // Revisa la lista para saber cuantas reservas estan activas
-        for (reserva reserva : reservas) {
-            // Verificar si la reserva está activa
-            if (reserva.getClientereserva().equals(cliente.getNombreCompleto()) & reserva.getCheckout().isAfter(LocalDate.now())) {
+        // Recorremos las reservas y contamos las que están activas para el cliente
+        for (reserva r : listaReservas) {
+            // Una reserva se considera activa si el cliente es el mismo y la fecha actual está dentro del rango de la reserva
+            if (r.getClientereserva().equals(cliente) & r.getCheckout().isAfter(LocalDate.now())) {
                 reservasActivas++;
             }
         }
-        return reservasActivas <= 3;
+
+        // Si el cliente ya tiene 3 reservas activas, no puede hacer una nueva reserva
+        return reservasActivas >= 3;
     }
+    
+    public static void MostrarReserva() {
+         for (reserva r : listaReservas) {
+            System.out.println(r.getClientereserva() + ": " + r.getHabitacionreservada());
+         }
+    }
+    
 }

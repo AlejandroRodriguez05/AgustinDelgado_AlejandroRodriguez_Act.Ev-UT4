@@ -5,6 +5,8 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -19,6 +21,8 @@ public class reserva {
     private String Clientereserva;
     private LocalDate checkin;
     private LocalDate checkout;
+    
+    
     
 //constructor
     public reserva(int habitacionreservada, String Clientereserva, LocalDate checkin, LocalDate checkout) {

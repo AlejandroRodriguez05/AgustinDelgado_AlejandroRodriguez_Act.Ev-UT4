@@ -14,12 +14,11 @@ public class cliente {
     private static int contador_ID=0;
     private int ID;
     private String NombreCompleto;
-    private int Historial_Reservas_Pasadas;
     private int Reservas_Actuales;
     
     //constructor
 
-    public cliente(String NombreCompleto, int Reservas_Actuales) {
+    public cliente(String NombreCompleto) {
         contador_ID++;
         this.ID = contador_ID;
         this.NombreCompleto = NombreCompleto;
@@ -36,19 +35,12 @@ public class cliente {
         return NombreCompleto;
     }
 
-    public int getHistorial_Reservas_Pasadas() {
-        return Historial_Reservas_Pasadas;
-    }
 
     public int getReservas_Actuales() {
         return Reservas_Actuales;
     }
     
     //Setter
-
-    public void setHistorial_Reservas_Pasadas(int Historial_Reservas_Pasadas) {
-        this.Historial_Reservas_Pasadas = Historial_Reservas_Pasadas;
-    }
 
     public void setReservas_Actuales(int Reservas_Actuales) {
         this.Reservas_Actuales = Reservas_Actuales;
