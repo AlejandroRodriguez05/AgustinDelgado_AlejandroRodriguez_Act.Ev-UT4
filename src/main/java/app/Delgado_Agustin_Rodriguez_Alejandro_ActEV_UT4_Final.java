@@ -5,7 +5,8 @@ package app;
 
 import model.TipoDeHabitacion;
 import model.habitacion;
-
+import model.cliente;
+import model.reserva;
 /**
  *
  * @author AlumnadoTarde
@@ -24,6 +25,9 @@ public class Delgado_Agustin_Rodriguez_Alejandro_ActEV_UT4_Final {
         habitacion habitacion7 = new habitacion(301, 150, TipoDeHabitacion.SUITE);
         habitacion habitacion8 = new habitacion(302, 150, TipoDeHabitacion.SUITE);
         habitacion habitacion9 = new habitacion(303, 150, TipoDeHabitacion.SUITE);
+
+        
+        
     }
 
 }
