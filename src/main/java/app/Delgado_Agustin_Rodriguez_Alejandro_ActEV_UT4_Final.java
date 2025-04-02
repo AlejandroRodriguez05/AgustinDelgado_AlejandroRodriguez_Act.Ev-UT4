@@ -38,9 +38,9 @@ public class Delgado_Agustin_Rodriguez_Alejandro_ActEV_UT4_Final {
         cliente cliente2 = new cliente("Alejandro Rodriguez Sanchez");
         cliente cliente3 = new cliente("Pepe Vera Sosa");
 
-        reserva reserva1 = new reserva(101, "Agustin Delgado Estevez", LocalDate.now().plusDays(10), LocalDate.now().plusDays(90));
-        reserva reserva2 = new reserva(201, "Alejandro Rodriguez Sanchez", LocalDate.now().plusDays(10), LocalDate.now().plusDays(90));
-        reserva reserva3 = new reserva(202, "Alejandro Rodriguez Sanchez", LocalDate.now().plusDays(10), LocalDate.now().plusDays(90));
+        reserva reserva1 = new reserva(101, "Agustin Delgado Estevez", LocalDate.now().plusDays(10), LocalDate.now().plusDays(70));
+        reserva reserva2 = new reserva(201, "Alejandro Rodriguez Sanchez", LocalDate.now().plusDays(10), LocalDate.now().plusDays(20));
+        reserva reserva3 = new reserva(202, "Alejandro Rodriguez Sanchez", LocalDate.now().plusDays(10), LocalDate.now().plusDays(40));
         reserva reserva4 = new reserva(203, "Alejandro Rodriguez Sanchez", LocalDate.now().plusDays(10), LocalDate.now().plusDays(90));
         reserva reserva5 = new reserva(301, "Pepe Vera Sosa", LocalDate.now().plusDays(10), LocalDate.now().plusDays(90));
         reserva reserva6 = new reserva(303, "Alejandro Rodriguez Sanchez", LocalDate.now().plusDays(10), LocalDate.now().plusDays(90));
@@ -94,10 +94,19 @@ public class Delgado_Agustin_Rodriguez_Alejandro_ActEV_UT4_Final {
         vc.BuscarHabitacionPorEstado();
         GestorHotel.BuscarEstadoHabitacion(EstadoDeHabitacion.DISPONIBLE);
         
-
+//falta vista a partir de aqui pa bajo.
         //buscar reservas activas de un cliente
         GestorHotel.buscarReservasActivasPorCliente("Alejandro Rodriguez Sanchez");
 
+        //listar historial de reservas de un cliente
+        GestorHotel.ListarHistorialReservaCliente("Agustin Delgado Estevez");
+        
+        
+        //resumen hatitaciones
+        GestorHotel.resumenhabitaciones();
+        
+        //resumen de clientes
+        GestorHotel.resumencliesntes();
+    
     }
-
 }

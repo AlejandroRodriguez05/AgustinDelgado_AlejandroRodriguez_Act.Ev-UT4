@@ -14,7 +14,6 @@ import model.habitacion;
 import model.TipoDeHabitacion;
 import model.EstadoDeHabitacion;
 
-
 /**
  *
  * @author AlumnadoTarde
@@ -24,6 +23,20 @@ public class GestorHotel {
     private static List<reserva> listaReservas = new ArrayList<>();
 
     private static List<habitacion> listaHabitaciones = new ArrayList<>();
+
+    public static void resumenhabitaciones() {
+        System.out.println("\n __Resumen de habitaciones__");
+        for (habitacion h : listaHabitaciones) {
+            System.out.println("NumeroHabitacion: " + h.getNumerohabitacion() + ": Precio: " + h.getPrecionoche() + ": tipo: " + h.getTipo() + ": Estado: " + h.getEstado());
+        }
+    }
+
+    public static void resumencliesntes() {
+        System.out.println("\n __Resumen de clientes__");
+        for (reserva r : listaReservas) {
+            System.out.println("Nombre del cliente: " + r.getClientereserva() + " habitacion reservada: " + r.getHabitacionreservada());
+        }
+    }
 
     public static void buscarReservasActivasPorCliente(String NombreCliente) {
         System.out.println("\n Reservas activas de: " + NombreCliente);
@@ -36,13 +49,14 @@ public class GestorHotel {
             }
         }
     }
-    public static void ListarHistorialReservaCliente(String NombreCliente){
-     System.out.println("\n Reservas totales de: " + NombreCliente);
-     for (reserva r : listaReservas){
-     if(r.getClientereserva().equalsIgnoreCase(NombreCliente)){
-      System.out.println("Id Reserva: "+r.getIdreserva()+" | Habitacion: " + r.getHabitacionreservada() + " | Check-in: " + r.getCheckin() + " | Check-out: " + r.getCheckout());
-     }
-     }
+
+    public static void ListarHistorialReservaCliente(String NombreCliente) {
+        System.out.println("\n Reservas totales de: " + NombreCliente);
+        for (reserva r : listaReservas) {
+            if (r.getClientereserva().equalsIgnoreCase(NombreCliente)) {
+                System.out.println("Id Reserva: " + r.getIdreserva() + " | Habitacion: " + r.getHabitacionreservada() + " | Check-in: " + r.getCheckin() + " | Check-out: " + r.getCheckout());
+            }
+        }
     }
 
     // Método para agregar una nueva habitación a la lista
@@ -121,14 +135,13 @@ public class GestorHotel {
         return reservasActivas >= 3;
     }
 
-
     public static void CancelarReserva(String cliente, int NumHabitacion) {
         boolean reservaCancelada = false;
 
         // Recorremos la lista de reservas
         for (reserva r : listaReservas) {
             // Verificamos si la reserva es del cliente y si la fecha de checkin no ha llegado a hoy
-            if (r.getClientereserva().equals(cliente) & r.getHabitacionreservada()== NumHabitacion) {
+            if (r.getClientereserva().equals(cliente) & r.getHabitacionreservada() == NumHabitacion) {
                 if (r.getCheckin().isAfter(LocalDate.now())) {
                     listaReservas.remove(r);
                     reservaCancelada = true;
