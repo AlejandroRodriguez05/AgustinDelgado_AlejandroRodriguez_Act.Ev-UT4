@@ -14,7 +14,6 @@ import model.habitacion;
 import model.TipoDeHabitacion;
 import model.EstadoDeHabitacion;
 
-
 /**
  *
  * @author AlumnadoTarde
@@ -36,13 +35,14 @@ public class GestorHotel {
             }
         }
     }
-    public static void ListarHistorialReservaCliente(String NombreCliente){
-     System.out.println("\n Reservas totales de: " + NombreCliente);
-     for (reserva r : listaReservas){
-     if(r.getClientereserva().equalsIgnoreCase(NombreCliente)){
-      System.out.println("Id Reserva: "+r.getIdreserva()+" | Habitacion: " + r.getHabitacionreservada() + " | Check-in: " + r.getCheckin() + " | Check-out: " + r.getCheckout());
-     }
-     }
+
+    public static void ListarHistorialReservaCliente(String NombreCliente) {
+        System.out.println("\n Reservas totales de: " + NombreCliente);
+        for (reserva r : listaReservas) {
+            if (r.getClientereserva().equalsIgnoreCase(NombreCliente)) {
+                System.out.println("Id Reserva: " + r.getIdreserva() + " | Habitacion: " + r.getHabitacionreservada() + " | Check-in: " + r.getCheckin() + " | Check-out: " + r.getCheckout());
+            }
+        }
     }
 
     // Método para agregar una nueva habitación a la lista
@@ -92,16 +92,26 @@ public class GestorHotel {
         if (verificarReservas(nuevaReserva.getClientereserva())) {
             System.out.println("\nError: Un cliente solo puede tener un maximo de 3 reservas activas al mismo tiempo.\n");
         } else {
-            listaReservas.add(nuevaReserva);
 
-            // Cambiar el estado de la habitación seleccionada a RESERVADA
             for (habitacion h : listaHabitaciones) {
                 if (h.getNumerohabitacion() == nuevaReserva.getHabitacionreservada()) {
-                    h.setEstado_Reservada(EstadoDeHabitacion.RESERVADA);
-                    break; //Salimos del bucle cuando se encuentre la habitacion.
+                    //Verifica que la habitacion no esta ya reservada
+                    if (h.getEstado().equals(EstadoDeHabitacion.RESERVADA)) {
+                        System.out.println("Error: Esta habitacion ya esta reservada");
+                        break;
+                    } else {
+                        // Cambiar el estado de la habitación seleccionada a RESERVADA
+                            if (h.getNumerohabitacion() == nuevaReserva.getHabitacionreservada()) {
+                                h.setEstado_Reservada(EstadoDeHabitacion.RESERVADA);
+                            }
+                        listaReservas.add(nuevaReserva);
+                        System.out.println("Reserva guardada con exito.");
+                        break;
+                    }
+                    
                 }
             }
-            System.out.println("Reserva guardada con exito.");
+
         }
     }
 
@@ -121,14 +131,13 @@ public class GestorHotel {
         return reservasActivas >= 3;
     }
 
-
     public static void CancelarReserva(String cliente, int NumHabitacion) {
         boolean reservaCancelada = false;
 
         // Recorremos la lista de reservas
         for (reserva r : listaReservas) {
             // Verificamos si la reserva es del cliente y si la fecha de checkin no ha llegado a hoy
-            if (r.getClientereserva().equals(cliente) & r.getHabitacionreservada()== NumHabitacion) {
+            if (r.getClientereserva().equals(cliente) & r.getHabitacionreservada() == NumHabitacion) {
                 if (r.getCheckin().isAfter(LocalDate.now())) {
                     listaReservas.remove(r);
                     reservaCancelada = true;
@@ -155,10 +164,25 @@ public class GestorHotel {
         }
     }
 
-    public static void MostrarReserva() {
+    public static void MostrarReservasGenerales() {
         for (reserva r : listaReservas) {
             System.out.println(r.getClientereserva() + ": " + r.getHabitacionreservada());
         }
     }
 
+    public static void calcularPrecioTotal(reserva r) {
+
+        LocalDate Checkin = r.getCheckin();
+        LocalDate Checkout = r.getCheckout();
+
+        // Calcular el número de noches restando los días
+        int noches = (int) (Checkout.toEpochDay() - Checkin.toEpochDay());
+
+        for (habitacion h : listaHabitaciones) {
+            if (h.getNumerohabitacion() == r.getHabitacionreservada()) {
+                int PrecioTotal = h.getPrecionoche() * noches;
+                System.out.println("El precio total de la persona: " + r.getClientereserva() + " es de " + PrecioTotal + " euros");
+            }
+        }
+    }
 }

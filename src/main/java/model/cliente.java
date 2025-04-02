@@ -9,24 +9,22 @@ package model;
  * @author AlumnadoTarde
  */
 public class cliente {
-    
+
     //atributos
-    private static int contador_ID=0;
+    private static int contador_ID = 0;
     private int ID;
     private String NombreCompleto;
     private int Reservas_Actuales;
-    
-    //constructor
 
+    //constructor
     public cliente(String NombreCompleto) {
         contador_ID++;
         this.ID = contador_ID;
         this.NombreCompleto = NombreCompleto;
         this.Reservas_Actuales = Reservas_Actuales;
     }
-    
-    //Getter
 
+    //Getter
     public int getID() {
         return ID;
     }
@@ -35,15 +33,13 @@ public class cliente {
         return NombreCompleto;
     }
 
-
     public int getReservas_Actuales() {
         return Reservas_Actuales;
     }
-    
-    //Setter
 
+    //Setter
     public void setReservas_Actuales(int Reservas_Actuales) {
         this.Reservas_Actuales = Reservas_Actuales;
     }
-    
+
 }

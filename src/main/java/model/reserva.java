@@ -21,9 +21,7 @@ public class reserva {
     private String Clientereserva;
     private LocalDate checkin;
     private LocalDate checkout;
-    
-    
-    
+
 //constructor
     public reserva(int habitacionreservada, String Clientereserva, LocalDate checkin, LocalDate checkout) {
         contadorid++;
@@ -34,7 +32,7 @@ public class reserva {
         this.checkout = checkout;
     }
 
-//getter
+//Getter
     public int getIdreserva() {
         return idreserva;
     }
@@ -55,7 +53,7 @@ public class reserva {
         return checkout;
     }
 
-//setter
+//Setter
     public void setContadorid(int contadorid) {
         this.contadorid = contadorid;
     }

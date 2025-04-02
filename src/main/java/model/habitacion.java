@@ -16,7 +16,6 @@ public class habitacion {
     private TipoDeHabitacion tipo;
     private EstadoDeHabitacion estado;
 
-
 //constructor
     public habitacion(int numerohabitacion, int precionoche, TipoDeHabitacion tipo) {
         this.numerohabitacion = numerohabitacion;
@@ -25,6 +24,7 @@ public class habitacion {
         this.tipo = tipo;
     }
 
+    //Getter
     public int getNumerohabitacion() {
         return numerohabitacion;
     }
@@ -41,6 +41,7 @@ public class habitacion {
         return estado;
     }
 
+    //Setter
     public void setNumerohabitacion(int numerohabitacion) {
         this.numerohabitacion = numerohabitacion;
     }
@@ -56,10 +57,12 @@ public class habitacion {
     public void setEstado_Disponible(EstadoDeHabitacion estado) {
         this.estado = EstadoDeHabitacion.DISPONIBLE;
     }
-     public void setEstado_Ocupada(EstadoDeHabitacion estado) {
+
+    public void setEstado_Ocupada(EstadoDeHabitacion estado) {
         this.estado = EstadoDeHabitacion.OCUPADA;
     }
-      public void setEstado_Reservada(EstadoDeHabitacion estado) {
+
+    public void setEstado_Reservada(EstadoDeHabitacion estado) {
         this.estado = EstadoDeHabitacion.RESERVADA;
     }
 

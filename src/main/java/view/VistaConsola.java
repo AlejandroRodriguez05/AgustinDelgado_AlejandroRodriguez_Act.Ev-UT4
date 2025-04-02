@@ -11,9 +11,9 @@ import java.util.Scanner;
  * @author AlumnadoTarde
  */
 public class VistaConsola {
-    
+
     Scanner scanner = new Scanner(System.in);
-    
+
     public void GuardarLasReservas() {
         System.out.println("\nPresione 'Enter' para continuar con: Guardar las Reservas creadas y mostrarlas");
         String respuesta = scanner.nextLine();
@@ -24,23 +24,38 @@ public class VistaConsola {
         String respuesta = scanner.nextLine();
     }
     
+     public void No_Reservar_Habitacion_Reservada() {
+        System.out.println("\nPresione 'Enter' para continuar con: No reservar una habitacion ya reservada");
+        String respuesta = scanner.nextLine();
+    }
+
     public void CancelarReserva() {
         System.out.println("\nPresione 'Enter' para continuar con: Cancelar la reserva de Pepe Vera Sosa");
         String respuesta = scanner.nextLine();
     }
-    
+
     public void BuscarHabitacionPorNumero() {
         System.out.println("\nPresione 'Enter' para continuar con: Buscar Habitacion por numero 101");
         String respuesta = scanner.nextLine();
     }
-    
+
     public void BuscarHabitacionPorTipo() {
         System.out.println("\nPresione 'Enter' para continuar con: Buscar Habitacion por tipo SUITE");
         String respuesta = scanner.nextLine();
     }
+
     public void BuscarHabitacionPorEstado() {
         System.out.println("\nPresione 'Enter' para continuar con: Buscar Habitacion por estado DISPONIBLE");
         String respuesta = scanner.nextLine();
     }
 
+     public void BuscarReservasActivasPorCliente() {
+        System.out.println("\nPresione 'Enter' para continuar con: Buscar Reservas Activas Por Clientes");
+        String respuesta = scanner.nextLine();
+    }
+     public void calcularPrecioTotal() {
+        System.out.println("\nPresione 'Enter' para continuar con: Calcular Precio Total de una reserva");
+        String respuesta = scanner.nextLine();
+    }
+     
 }
