@@ -38,13 +38,15 @@ public class Delgado_Agustin_Rodriguez_Alejandro_ActEV_UT4_Final {
         cliente cliente2 = new cliente("Alejandro Rodriguez Sanchez");
         cliente cliente3 = new cliente("Pepe Vera Sosa");
 
+
         reserva reserva1 = new reserva(101, "Agustin Delgado Estevez", LocalDate.now().plusDays(10), LocalDate.now().plusDays(80));
         reserva reserva2 = new reserva(102, "Alejandro Rodriguez Sanchez", LocalDate.now().plusDays(10), LocalDate.now().plusDays(80));
         reserva reserva3 = new reserva(202, "Alejandro Rodriguez Sanchez", LocalDate.now().plusDays(10), LocalDate.now().plusDays(80));
         reserva reserva4 = new reserva(203, "Alejandro Rodriguez Sanchez", LocalDate.now().plusDays(10), LocalDate.now().plusDays(80));
         reserva reserva5 = new reserva(301, "Pepe Vera Sosa", LocalDate.now().plusDays(10), LocalDate.now().plusDays(80));
         reserva reserva6 = new reserva(303, "Alejandro Rodriguez Sanchez", LocalDate.now().plusDays(10), LocalDate.now().plusDays(80));
-        reserva reserva7 = new reserva(303, "Pepe Vera Sosa", LocalDate.now().plusDays(10), LocalDate.now().plusDays(80));
+        reserva reserva7 = new reserva(102, "Pepe Vera Sosa", LocalDate.now().plusDays(10), LocalDate.now().plusDays(80));
+
 
         //METODOS
         //Agregar Habitaciones a la lista
@@ -104,6 +106,17 @@ public class Delgado_Agustin_Rodriguez_Alejandro_ActEV_UT4_Final {
         //Calcula el precio total de la reserva que ingreses
         vc.calcularPrecioTotal();
         GestorHotel.calcularPrecioTotal(reserva2);
-    }
 
+        //listar historial de reservas de un cliente
+        vc.ListarHistorialReservaCliente();
+        GestorHotel.ListarHistorialReservaCliente("Agustin Delgado Estevez");
+        
+        //resumen hatitaciones
+        vc.resumenhabitaciones();
+        GestorHotel.resumenhabitaciones();
+        
+        //resumen de clientes
+        vc.resumencliesntes();
+        GestorHotel.resumencliesntes();
+    }
 }

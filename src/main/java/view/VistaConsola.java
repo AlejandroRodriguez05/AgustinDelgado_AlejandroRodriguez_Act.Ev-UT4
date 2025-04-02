@@ -57,5 +57,20 @@ public class VistaConsola {
         System.out.println("\nPresione 'Enter' para continuar con: Calcular Precio Total de una reserva");
         String respuesta = scanner.nextLine();
     }
+     public void ListarHistorialReservaCliente() {
+        System.out.println("\nPresione 'Enter' para continuar con: Listar Historial de Reservas Del Cliente");
+        String respuesta = scanner.nextLine();
+    }
+     
+     public void resumenhabitaciones() {
+        System.out.println("\nPresione 'Enter' para continuar con: Resumen de Habitaciones");
+        String respuesta = scanner.nextLine();
+    }
+     
+     public void resumencliesntes() {
+        System.out.println("\nPresione 'Enter' para continuar con: Resumen De Clientes");
+        String respuesta = scanner.nextLine();
+    }
+     
      
 }

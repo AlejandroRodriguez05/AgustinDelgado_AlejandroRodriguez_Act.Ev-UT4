@@ -24,6 +24,20 @@ public class GestorHotel {
 
     private static List<habitacion> listaHabitaciones = new ArrayList<>();
 
+    public static void resumenhabitaciones() {
+        System.out.println("\n __Resumen de habitaciones__");
+        for (habitacion h : listaHabitaciones) {
+            System.out.println("NumeroHabitacion: " + h.getNumerohabitacion() + ": Precio: " + h.getPrecionoche() + ": tipo: " + h.getTipo() + ": Estado: " + h.getEstado());
+        }
+    }
+
+    public static void resumencliesntes() {
+        System.out.println("\n __Resumen de clientes__");
+        for (reserva r : listaReservas) {
+            System.out.println("Nombre del cliente: " + r.getClientereserva() + " habitacion reservada: " + r.getHabitacionreservada());
+        }
+    }
+
     public static void buscarReservasActivasPorCliente(String NombreCliente) {
         System.out.println("\n Reservas activas de: " + NombreCliente);
         boolean encontrado = false;
